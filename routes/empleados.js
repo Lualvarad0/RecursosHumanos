@@ -22,7 +22,7 @@ empleados.post("/", async (req,res, next)=>{
 
 
 empleados.delete('/:name([A-Za-z]+)', async (req, res, next)=>{
-    const query = `DELETE FROM empleados WHERE nombre=${req.params.name}`;
+    const query = `DELETE FROM empleados WHERE nombre='${req.params.name}'`;
 
     const rows = await db.query(query);
 
@@ -37,8 +37,8 @@ empleados.put('/:name([A-Za-z]+)', async (req,res,next)=>{
     const {nombre,apellidos,telefono,correo,direccion} = req.body;
 
     if (nombre && apellidos && telefono && correo && direccion) {
-        let query = `UPDATE empleados SET nombre=${req.params.name},apellidos=${apellidos},`;
-        query += `telefono=${telefono},correo=${correo},direccion=${direccion} WHERE nombre=${req.params.name}`;
+        let query = `UPDATE empleados SET nombre='${req.params.name}',apellidos='${apellidos}',`;
+        query += `telefono='${telefono}',correo='${correo}',direccion='${direccion}' WHERE nombre='${req.params.name}'`;
         
         const rows = await db.query(query);
         console.log(rows);
@@ -58,7 +58,7 @@ empleados.get('/:name([A-Za-z]+)', async (req, res, next)=>{
     const emp = await db.query("SELECT * FROM empleados WHERE nombre='"+name+"';");
 
     if (emp.length>0){ 
-        return res.status(200).json({ code:200, message: pkmn});
+        return res.status(200).json({ code:200, message: emp});
     } 
     
     return res.status(404).json({code:404,message:"Empleado no encontrado"});
