@@ -35,7 +35,7 @@ function get() {
 function displayEmploye(empleados){
     var body = document.querySelector("body");
     for(var i=0;i<empleados.lenght;i++){
-        body.innerHTML += `<h3>${empleados[i].message}</h3>`;
+        body.innerHTML += `<h3>${empleados[i].nombre}</h3>`;
         body.innerHTML += `<h4>${empleados[i].apellidos}</h4>`;
         body.innerHTML += `<h4>${empleados[i].telefono}</h4>`;
         body.innerHTML += `<h4>${empleados[i].correo}</h4>`;
