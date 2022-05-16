@@ -1,7 +1,14 @@
 window.onload = init;
+var headers = {};
 
 function init(){
-    if (!localStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
+        token = localStorage.getItem("token");
+        headers = {
+            headers: {
+                'Authorization': "bearer " + localStorage.getItem("token")
+            }
+        }
         document.querySelector('.btn-secondary').addEventListener('click', function(){
             window.location.href = "Main.html"
         });
@@ -9,12 +16,10 @@ function init(){
         document.querySelector('.btn-primary').addEventListener('click', put);
     }
     else{
-        window.location.href = "login.html"
+        window.location.href="login.html";
     }
-
-
-   
 }
+
 
 function put() {
     var name = document.getElementById('input-name').value;
@@ -32,6 +37,9 @@ function put() {
             telefono: number,
             correo: mail,
             direccion: direction
+        },
+        headers: {
+            'Authorization': "bearer " + localStorage.getItem("token")
         }
     }).then(function(res) {
         console.log(res);

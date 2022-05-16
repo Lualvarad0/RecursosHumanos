@@ -1,7 +1,14 @@
 window.onload = init;
+var headers = {};
 
 function init(){
-    if (!localStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
+        token = localStorage.getItem("token");
+        headers = {
+            headers: {
+                'Authorization': "bearer " + localStorage.getItem("token")
+            }
+        }
         document.querySelector('.btn-secondary').addEventListener('click', function(){
             window.location.href = "Main.html"
         });
@@ -9,11 +16,8 @@ function init(){
         document.querySelector('.btn-primary').addEventListener('click', del);
     }
     else{
-        window.location.href = "login.html"
+        window.location.href="login.html";
     }
-
-
-   
 }
 
 function del() {
@@ -24,6 +28,9 @@ function del() {
         url: 'http://localhost:3000/empleados/'+name,
         data: {
             nombre: name
+        },
+        headers: {
+            'Authorization': "bearer " + localStorage.getItem("token")
         }
     }).then(function(res) {
         console.log(res);
