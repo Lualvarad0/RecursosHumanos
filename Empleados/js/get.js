@@ -23,23 +23,22 @@ function init(){
 
 function get() {
     var name = document.getElementById('input-name').value;
+    var table = document.querySelector("table");
 
     axios.get("http://localhost:3000/empleados/"+name, headers).then(function(res){
         console.log(res);
-        displayEmploye(res.data.message);
+        for(var i=0;i<res.data.message.length;i++){
+            table.innerHTML += `
+          <tr>
+            <td>${res.data.message[i].nombre}</td>
+            <td>${res.data.message[i].apellidos}</td>
+            <td>${res.data.message[i].telefono}</td>
+            <td>${res.data.message[i].correo}</td>
+            <td>${res.data.message[i].direccion}</td>
+          </tr>`;
+            
+        }
     }).catch(function(err){
         console.log(err);
     })
-}
-
-function displayEmploye(empleados){
-    var body = document.querySelector("body");
-    for(var i=0;i<empleados.lenght;i++){
-        body.innerHTML += `<h3>${empleados[i].nombre}</h3>`;
-        body.innerHTML += `<h4>${empleados[i].apellidos}</h4>`;
-        body.innerHTML += `<h4>${empleados[i].telefono}</h4>`;
-        body.innerHTML += `<h4>${empleados[i].correo}</h4>`;
-        body.innerHTML += `<h4>${empleados[i].direccion}</h4>`;
-
-    }
 }

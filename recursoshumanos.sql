@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2022 a las 03:20:57
+-- Tiempo de generación: 17-05-2022 a las 02:32:44
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -30,10 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `empleados` (
   `nombre` varchar(25) NOT NULL,
   `apellidos` varchar(25) NOT NULL,
-  `telefono` int(10) NOT NULL,
+  `telefono` bigint(10) NOT NULL,
   `correo` varchar(50) NOT NULL,
   `direccion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `empleados`
+--
+
+INSERT INTO `empleados` (`nombre`, `apellidos`, `telefono`, `correo`, `direccion`) VALUES
+('humberto', 'Ledesma', 2147483647, 'baruch_001@outlook.es', 'Col. Emiliano Zapata'),
+('Francisco', 'Olvera', 2147483647, 'asterius@gmail.com', 'Emiliano Zapata'),
+('Francisco', 'Moya', 2147483647, 'shark@gmail.com', 'Col. Ensueño');
 
 -- --------------------------------------------------------
 
@@ -53,7 +62,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_mail`, `user_password`) VALUES
-(1, 'Humberto', 'baruch_001@outlook.es', 'Hermanos03');
+(1, 'Humberto', 'baruch_001@outlook.es', 'Hermanos03'),
+(2, 'Francisco Olguin', 'greed@gmail.com', 'Bones8624');
 
 --
 -- Índices para tablas volcadas
@@ -73,7 +83,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
